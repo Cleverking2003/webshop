@@ -3,10 +3,8 @@ from rest_framework import serializers
 from .models import Item, Brand, Category, Image
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-class ItemSerializer(serializers.HyperlinkedModelSerializer):
-    images = serializers.SerializerMethodField(read_only=True)
-    category = serializers.SerializerMethodField(read_only=True)
-    brand = serializers.SerializerMethodField(read_only=True)
+class ItemSerializer(serializers.ModelSerializer):
+    images = serializers.SerializerMethodField()
     class Meta:
         model = Item
         fields = ['id', 'name', 'desc', 'price', 'amount', 'images', 'brand', 'category']
@@ -16,39 +14,28 @@ class ItemSerializer(serializers.HyperlinkedModelSerializer):
         images = obj.image_set.all()
         serializer = ImageSerializer(images, many=True)
         return serializer.data
-    
-    def get_category(self, obj):
-        category = obj.category
-        serializer = CategorySerializer(category, many=False)
-        return serializer.data
 
-    def get_brand(self, obj):
-        brand = obj.brand
-        serializer = BrandSerializer(brand, many=False)
-        return serializer.data
-
-
-class CategorySerializer(serializers.HyperlinkedModelSerializer):
+class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = ['id', 'name', 'desc']
 
-class BrandSerializer(serializers.HyperlinkedModelSerializer):
+class BrandSerializer(serializers.ModelSerializer):
     class Meta:
         model = Brand
         fields = ['id', 'name', 'desc']
 
-class ImageSerializer(serializers.HyperlinkedModelSerializer):
+class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Image
-        fields = ['id', 'file']
+        fields = ['id', 'item', 'file']
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'url', 'username', 'email', 'groups', 'is_staff']
 
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
+class GroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = Group
         fields = ['id', 'url', 'name']

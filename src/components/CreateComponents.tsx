@@ -3,7 +3,6 @@ import { ArrayInput, Create, ImageInput, NumberInput, ReferenceInput, SimpleForm
 export const BrandCreate = () => (
     <Create>
         <SimpleForm>
-            <TextInput source="id" InputProps={{ disabled: true }} />
             <TextInput source="name" />
             <TextInput source="desc" />
         </SimpleForm>
@@ -13,7 +12,6 @@ export const BrandCreate = () => (
 export const CategoryCreate = () => (
     <Create>
         <SimpleForm>
-            <TextInput source="id" InputProps={{ disabled: true }} />
             <TextInput source="name" />
             <TextInput source="desc" />
         </SimpleForm>
@@ -23,15 +21,14 @@ export const CategoryCreate = () => (
 export const ItemCreate = () => (
     <Create>
         <SimpleForm>
-            <TextInput source="id" InputProps={{ disabled: true }}/>
             <TextInput source="name" />
             <TextInput source="desc" />
             <TextInput source="price" />
             <NumberInput source="amount" />
-            <ArrayInput source="images"><SimpleFormIterator><TextInput source="id"  InputProps={{ disabled: true }} />
-<ImageInput source="file" /></SimpleFormIterator></ArrayInput>
-            <ReferenceInput source="brand.id" reference='brands'/>
-            <ReferenceInput source='category.id' reference='categories'/>
+            {/* <ArrayInput source="images"><SimpleFormIterator>
+<ImageInput source="file" /></SimpleFormIterator></ArrayInput> */}
+            <ReferenceInput source="brand" reference='brands'/>
+            <ReferenceInput source='category' reference='categories'/>
         </SimpleForm>
     </Create>
 );
@@ -39,7 +36,7 @@ export const ItemCreate = () => (
 export const ImageCreate = () => (
     <Create>
         <SimpleForm>
-            <TextInput source="id" InputProps={{ disabled: true }} />
+            <ReferenceInput source='item' reference='items'/>
             <ImageInput source="file" />
         </SimpleForm>
     </Create>

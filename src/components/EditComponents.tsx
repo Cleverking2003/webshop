@@ -3,7 +3,6 @@ import { ArrayInput, Edit, ImageInput, NumberInput, ReferenceInput, SimpleForm, 
 export const BrandEdit = () => (
     <Edit>
         <SimpleForm>
-            <TextInput source="id" InputProps={{ disabled: true }} />
             <TextInput source="name" />
             <TextInput source="desc" />
         </SimpleForm>
@@ -13,7 +12,6 @@ export const BrandEdit = () => (
 export const CategoryEdit = () => (
     <Edit>
         <SimpleForm>
-            <TextInput source="id" InputProps={{ disabled: true }} />
             <TextInput source="name" />
             <TextInput source="desc" />
         </SimpleForm>
@@ -23,15 +21,12 @@ export const CategoryEdit = () => (
 export const ItemEdit = () => (
     <Edit>
         <SimpleForm>
-            <TextInput source="id" InputProps={{ disabled: true }}/>
             <TextInput source="name" />
             <TextInput source="desc" />
             <TextInput source="price" />
             <NumberInput source="amount" />
-            <ArrayInput source="images"><SimpleFormIterator><TextInput source="id" />
-<TextInput source="file" /></SimpleFormIterator></ArrayInput>
-            <ReferenceInput source="brand.id" reference='brands'/>
-            <ReferenceInput source='category.id' reference='categories'/>
+            <ReferenceInput source="brand" reference='brands'/>
+            <ReferenceInput source='category' reference='categories'/>
         </SimpleForm>
     </Edit>
 );
@@ -39,7 +34,7 @@ export const ItemEdit = () => (
 export const ImageEdit = () => (
     <Edit>
         <SimpleForm>
-            <TextInput source="id" InputProps={{ disabled: true }} />
+            <ReferenceInput source='item' reference='items'/>
             <ImageInput source="file" />
         </SimpleForm>
     </Edit>

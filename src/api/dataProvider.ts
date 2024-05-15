@@ -67,11 +67,12 @@ export default {
     },
 
     update: async (resource: string, params: any) => {
-        const url = `${apiUrl}/${resource}/${params.id}`;
+        const url = `${apiUrl}/${resource}/${params.id}/`;
         const { json } = await httpClient(url, {
             method: 'PUT',
             body: JSON.stringify(params.data),
         })
+        console.log(json)
         return { data: json };
     },
 

@@ -20,11 +20,13 @@
     "axios": "^1.4.0",
     "jwt-decode": "^3.1.2",
     "prettier": "^3.0.0",
+    "ra-language-russian": "^4.14.2",
     "react": "^18.2.0",
     "react-admin": "^4.16.17",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.8.0",
+    "react-image-gallery": "^1.3.0",
     "react-intersection-observer": "^9.5.2",
     "react-router-dom": "^6.11.2",
     "zustand": "^4.3.8"

@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import Reviews from "../components/Reviews";
 import { Image } from "../Interfaces";
+import ImageGallery from "react-image-gallery";
 
 const SoloProduct = () => {
 
@@ -54,7 +55,7 @@ const SoloProduct = () => {
 
                 </div>
 
-                <div className="flex-inline">
+                {/* <div className="flex-inline">
                     {
                         data.images.map((i: Image) => (
                             <img
@@ -64,8 +65,12 @@ const SoloProduct = () => {
                             />
                         ))
                     }
-                </div>
+                </div> */}
+
             </div>
+            <ImageGallery items={data.images.map((i: Image) => (
+                { orignal: i.file, thumbnail: i.file, thumbnailWidth: 200, thumbnailHeight: 200  }
+            ))}/>
             {/* <Reviews productId={data.id} reviews={data.reviews}/> */}
         </div>
     );
