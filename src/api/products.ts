@@ -71,3 +71,8 @@ export const get_brands = async ({ pageParam = 1 }) => {
     const response = await axi.get(`/brands/?page=${pageParam}&pages=9`)
     return response.data
 };
+
+export const buyProduct = async (data: Product) => {
+    const response = await authAxios.post(`/make_purchase/${data.id}/`);
+    return response.data;
+};

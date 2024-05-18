@@ -4,7 +4,7 @@ export const ImageList = () => (
     <List>
         <Datagrid rowClick="edit">
             <ReferenceField source="item" reference='items'/>
-            <ImageField source="file" />
+            <ImageField source="image_file" />
         </Datagrid>
     </List>
 );
@@ -16,7 +16,7 @@ export const ItemList = () => (
             <TextField source="desc" />
             <TextField source="price" />
             <NumberField source="amount" />
-            <ArrayField source="images"><SingleFieldList><ImageField source="file" /></SingleFieldList></ArrayField>
+            <ArrayField source="images"><SingleFieldList><ImageField source="image_file" /></SingleFieldList></ArrayField>
             <ReferenceField source="brand" reference='brands'/>
             <ReferenceField source="category" reference='categories'/>
         </Datagrid>

@@ -25,6 +25,6 @@ class Item(models.Model):
 
 class Image(models.Model):
     item = models.ForeignKey(Item, on_delete=models.SET_NULL, null=True)
-    file = models.ImageField(null=True)
+    image_file = models.ImageField(null=True, upload_to='')
     def __str__(self):
-        return f'Image({self.item}, {self.file})'
+        return f'Image({self.item}, {self.image_file})'

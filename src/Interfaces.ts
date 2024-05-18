@@ -14,7 +14,7 @@ export interface Product {
 
 export interface Image {
     id?: number
-    file: File
+    image_file: File
 }
 
 export interface Category {

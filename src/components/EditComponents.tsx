@@ -35,7 +35,7 @@ export const ImageEdit = () => (
     <Edit>
         <SimpleForm>
             <ReferenceInput source='item' reference='items'/>
-            <ImageInput source="file" />
+            <ImageInput source="image_file" />
         </SimpleForm>
     </Edit>
 );

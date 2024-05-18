@@ -37,7 +37,7 @@ export const ImageCreate = () => (
     <Create>
         <SimpleForm>
             <ReferenceInput source='item' reference='items'/>
-            <ImageInput source="file" />
+            <ImageInput source="image_file" />
         </SimpleForm>
     </Create>
 );

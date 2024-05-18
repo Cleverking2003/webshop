@@ -2,11 +2,12 @@ from django.http import HttpResponse
 from .models import *
 from .serializers import *
 from rest_framework import permissions, viewsets, pagination, status
-from rest_framework.decorators import action
+from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django_filters import rest_framework as filters
+from rest_framework.parsers import MultiPartParser, FormParser
 
 def index(request):
     return HttpResponse("shop will be here.")
@@ -24,25 +25,23 @@ class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
     pagination_class = pagination.PageNumberPagination
-    # search_fields = ['name', 'category__id']
     filterset_class = ItemFilter
 
-    @action(
-        methods=['post'], detail=True, permission_classes=[permissions.IsAuthenticated] 
-    )
-    def make_purchase(self, request, pk=None):
-        item = get_object_or_404(Item, id=pk)
+@api_view(['POST'])
+@permission_classes([permissions.IsAuthenticated])
+def make_purchase(request, pk=None):
+    item = get_object_or_404(Item, id=pk)
 
-        if item.amount < 1:
-            return Response(
-                {'errors': 'Товар отсутствует'},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-        
-        item.amount -= 1
-        item.save()
-        item_serializer = ItemSerializer(item, context={'request':request})
-        return HttpResponse(item_serializer.data, status=status.HTTP_200_OK)
+    if item.amount < 1:
+        return Response(
+            {'errors': 'Товар отсутствует'},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+    
+    item.amount -= 1
+    item.save()
+    item_serializer = ItemSerializer(item, context={'request':request})
+    return HttpResponse(item_serializer.data, status=status.HTTP_200_OK)
 
 
 class BrandViewSet(viewsets.ModelViewSet):
@@ -56,7 +55,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
 class ImageViewSet(viewsets.ModelViewSet):
     queryset = Image.objects.all()
     serializer_class = ImageSerializer
-
+    parser_classes = (MultiPartParser, FormParser)
 
 class UserViewSet(viewsets.ModelViewSet):
     """

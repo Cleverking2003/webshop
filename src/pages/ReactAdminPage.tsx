@@ -13,6 +13,6 @@ export const ReactAdminPage = () => (
         <Resource name='items' list={ItemList} edit={ItemEdit} create={ItemCreate} recordRepresentation="name"/>
         <Resource name='categories' list={CategoryList} edit={CategoryEdit} create={CategoryCreate} recordRepresentation="name"/>
         <Resource name='brands' list={BrandList} edit={BrandEdit} create={BrandCreate} recordRepresentation="name"/>
-        <Resource name='images' list={ImageList} edit={ImageEdit} create={ImageCreate}/>
+        <Resource name='images' list={ImageList} edit={ImageEdit} create={ImageCreate} recordRepresentation="image_file"/>
     </Admin>
 );
