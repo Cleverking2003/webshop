@@ -1,34 +1,45 @@
 from django.contrib.auth.models import Group, User
-from rest_framework import serializers
+from rest_framework import serializers, filters
 from .models import Item, Brand, Category, Image
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 class ItemSerializer(serializers.ModelSerializer):
     images = serializers.SerializerMethodField()
+    category_full = serializers.SerializerMethodField()
+    brand_full = serializers.SerializerMethodField()
     class Meta:
         model = Item
-        fields = ['id', 'name', 'desc', 'price', 'amount', 'images', 'brand', 'category']
-        # fields = '__all__'
+        fields = '__all__'
 
     def get_images(self, obj):
         images = obj.image_set.all()
         serializer = ImageSerializer(images, many=True)
         return serializer.data
 
+    def get_category_full(self, obj):
+        category = obj.category
+        serializer = CategorySerializer(category, many=False)
+        return serializer.data
+
+    def get_brand_full(self, obj):
+        brand = obj.brand
+        serializer = BrandSerializer(brand, many=False)
+        return serializer.data
+
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ['id', 'name', 'desc']
+        fields = '__all__'
 
 class BrandSerializer(serializers.ModelSerializer):
     class Meta:
         model = Brand
-        fields = ['id', 'name', 'desc']
+        fields = '__all__'
 
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Image
-        fields = ['id', 'item', 'file']
+        fields = '__all__'
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

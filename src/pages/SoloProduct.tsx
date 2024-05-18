@@ -32,7 +32,6 @@ const SoloProduct = () => {
                         ${data.price}
                         </span>
                     </h2>
-                    <p className="mb-4 font-bold">{data.desc}</p>
                     <a
                         href="#"
                         className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -54,24 +53,12 @@ const SoloProduct = () => {
                     </a>
 
                 </div>
+                <ImageGallery items={data.images.map((i: Image) => (
+                    { orignal: i.file, thumbnail: i.file }
+                ))}/>
 
-                {/* <div className="flex-inline">
-                    {
-                        data.images.map((i: Image) => (
-                            <img
-                                className="w-full"
-                                src={`${import.meta.env.VITE_BACKEND_URL}/..${i.file}`}
-                                alt="office content 1"
-                            />
-                        ))
-                    }
-                </div> */}
-
+                <p className="mb-4 font-bold text-gray-400 text-2xl">{data.desc}</p>
             </div>
-            <ImageGallery items={data.images.map((i: Image) => (
-                { orignal: i.file, thumbnail: i.file, thumbnailWidth: 200, thumbnailHeight: 200  }
-            ))}/>
-            {/* <Reviews productId={data.id} reviews={data.reviews}/> */}
         </div>
     );
 };

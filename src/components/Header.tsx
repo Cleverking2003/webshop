@@ -87,12 +87,18 @@ const Header = () => {
                           Home
                         </Link>
 
-                        {/* <Link
+                        <Link
                           to={'/cate'}
                           className='text-black p-2 px-4 rounded-lg hover:bg-slate-400 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white'
                         >
                           Categories
-                        </Link> */}
+                        </Link>
+                        <Link
+                          to={'/brand'}
+                          className='text-black p-2 px-4 rounded-lg hover:bg-slate-400 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white'
+                        >
+                          Brands
+                        </Link>
                       </>
 
                     ) : (
@@ -115,7 +121,7 @@ const Header = () => {
 
                     {is_admin && is_admin && (
                       <Link
-                        to={'/admin'}
+                        to={'/reactadmin'}
                         className='text-black p-2 px-4 rounded-lg hover:bg-slate-400 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white'
                       >
                         Admin Panel

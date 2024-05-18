@@ -16,6 +16,8 @@ import CartPage from "./pages/CartPage"
 import UserProfile from "./pages/UserProfile"
 import SoloOrder from "./pages/SoloOrder"
 import { ReactAdminPage } from "./pages/ReactAdminPage"
+import BrandPage from "./pages/BrandPage"
+import SearchByBrand from "./pages/SearchByBrand"
 
 
 function App() {
@@ -30,8 +32,11 @@ function App() {
                 <Route index element={<HomePage />} />
                 <Route path="items/:id" element={<SoloProduct />} />
 
-                {/* <Route path="cate" element={<CatePage />} />
-                <Route path="cate/:cate" element={<SearchByCate />} /> */}
+                <Route path="cate" element={<CatePage />} />
+                <Route path="cate/:cate" element={<SearchByCate />} />
+
+                <Route path="brand" element={<BrandPage />} />
+                <Route path="brand/:brand" element={<SearchByBrand />} />
 
                 <Route element={<PrivateRoute />} >
                     <Route path="cart" element={<CartPage />} />

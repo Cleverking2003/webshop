@@ -5,8 +5,8 @@ export interface Product {
   price: number
   rating?: number
   amount : number
-  category: Category
-  brand: Brand
+  category_full: Category
+  brand_full: Brand
   images: Image[]
   quantity?: number
   num_reviews?: number

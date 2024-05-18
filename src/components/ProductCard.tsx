@@ -36,11 +36,14 @@ const ProductCard = ({ product }: Props) => {
                         </div>
                     </Link>
                     <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                        Категория: {product.category.name}
+                        Категория: {product.category_full.name}
                     </p>
                     <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                        {product.desc}
+                        Количество: {product.amount}
                     </p>
+                    {/* <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                        {product.desc}
+                    </p> */}
 
                     <button
                         onClick={() => addToCart(product)}

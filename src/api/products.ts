@@ -7,13 +7,17 @@ export const create_review = async (description: string, rating: number, product
 };
 
 export const cate_api = async (category: string) => {
-    const response = await authAxios.get(`/categories/${category}/`)
+    const response = await authAxios.get(`/items/?category=${category}`)
     return response.data;
 };
 
+export const brand_api = async (brand: string) => {
+    const response = await authAxios.get(`/items/?brand=${brand}`)
+    return response.data;
+};
 
 export const search_prod = async (query: string) => {
-    const response = await authAxios.get(`/items/?query=${query}`)
+    const response = await authAxios.get(`/items/?name=${query}`)
     return response.data;
 };
 
@@ -55,5 +59,15 @@ export const post_product = async (data: Product) => {
 
 export const get_products = async ({ pageParam = 1 }) => {
     const response = await axi.get(`/items/?page=${pageParam}&pages=9`)
+    return response.data
+};
+
+export const get_categories = async ({ pageParam = 1 }) => {
+    const response = await axi.get(`/categories/?page=${pageParam}&pages=9`)
+    return response.data
+};
+
+export const get_brands = async ({ pageParam = 1 }) => {
+    const response = await axi.get(`/brands/?page=${pageParam}&pages=9`)
     return response.data
 };

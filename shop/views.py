@@ -6,14 +6,26 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from rest_framework_simplejwt.views import TokenObtainPairView
+from django_filters import rest_framework as filters
 
 def index(request):
     return HttpResponse("shop will be here.")
+
+class ItemFilter(filters.FilterSet):
+    name = filters.Filter(field_name='name', lookup_expr='contains')
+    category = filters.NumberFilter(field_name='category__id')
+    brand = filters.NumberFilter(field_name='brand__id')
+
+    class Meta:
+        model = Item
+        fields = ['category__id']
 
 class ItemViewSet(viewsets.ModelViewSet):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
     pagination_class = pagination.PageNumberPagination
+    # search_fields = ['name', 'category__id']
+    filterset_class = ItemFilter
 
     @action(
         methods=['post'], detail=True, permission_classes=[permissions.IsAuthenticated] 
