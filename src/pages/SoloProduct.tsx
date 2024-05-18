@@ -37,7 +37,7 @@ const SoloProduct = () => {
                         onClick={() => buyProduct(data)}
                         className="mb-2 inline-flex items-center mx-3 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     >
-                        Add to Cart
+                        Купить
                         <svg
                             aria-hidden="true"
                             className="w-4 h-4 ml-2 -mr-1"
@@ -54,9 +54,11 @@ const SoloProduct = () => {
                     </button>
 
                 </div>
+                <div className="col-span-2">
                 <ImageGallery items={data.images.map((i: Image) => (
                     { orignal: i.image_file, thumbnail: i.image_file }
                 ))}/>
+                </div>
 
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                     Категория: {data.category_full.name}
@@ -67,8 +69,7 @@ const SoloProduct = () => {
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
                     Количество: {data.amount}
                 </p>
-                <div/>
-                <p className="mb-4 font-bold text-gray-400 text-2xl">{data.desc}</p>
+                <p className="mb-4 font-bold text-gray-400 text-2xl col-span-2">{data.desc}</p>
             </div>
         </div>
     );

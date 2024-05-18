@@ -201,7 +201,7 @@ const Products = ({ results }: Props) => {
 
                                 {!isLoading && data?.pages.length === 0 && (
                                     <p className="text-xl text-slate-800 dark:text-slate-200">
-                                        No more results
+                                        Нет результатов
                                     </p>
                                 )}
                                 {!isLoading &&

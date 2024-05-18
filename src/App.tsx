@@ -38,21 +38,21 @@ function App() {
                 <Route path="brand" element={<BrandPage />} />
                 <Route path="brand/:brand" element={<SearchByBrand />} />
 
-                <Route element={<PrivateRoute />} >
+                {/* <Route element={<PrivateRoute />} >
                     <Route path="cart" element={<CartPage />} />
                     <Route path="profile" element={<UserProfile />} />
                     <Route path="order/:id" element={<SoloOrder />} />
-                </Route>
+                </Route> */}
 
-                <Route path="admin" element={<AdminPrivateRoute />} >
+                {/* <Route path="admin" element={<AdminPrivateRoute />} >
                     <Route index element={<AdminPage />} />
                     <Route path="add" element={<AddProductPage />} />
                     <Route path="edit/:id" element={<EditProductPage />} />
-                </Route>
+                </Route> */}
 
             </Route>
 
-            <Route path="reactadmin/*" element={<AdminPrivateRoute />} >
+            <Route path="reactadmin/" element={<AdminPrivateRoute />} >
                 <Route path="*" element={<ReactAdminPage/>} />
             </Route>
         </Routes>

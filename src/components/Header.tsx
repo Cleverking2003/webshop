@@ -10,6 +10,8 @@ import jwt_decode from "jwt-decode"
 import { useCartStore } from "../store/cart"
 import { Token } from "../Interfaces";
 import { useSearchStore } from "../store/search";
+import { FaUser } from "react-icons/fa";
+import { UserIcon } from "@heroicons/react/20/solid";
 
 const Header = () => {
 
@@ -55,7 +57,7 @@ const Header = () => {
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
 
                 <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-600 hover:text-gray-900 dark:text-slate-200 dark:hover:text-slate-50">
-                  <span className="sr-only">Open main menu</span>
+                  <span className="sr-only">Открыть меню</span>
                   {open ? (
                     <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
                   ) : (
@@ -76,7 +78,7 @@ const Header = () => {
 
                 <div className="hidden sm:ml-6 sm:block">
 
-                  <div className="flex space-x-4">
+                  <div className="flex space-x-0">
 
                     {isAuth ? (
                       <>
@@ -84,20 +86,20 @@ const Header = () => {
                           to={'/'}
                           className='bg-slate-400 p-2 px-4 rounded-lg text-black dark:bg-gray-900 dark:text-white' 
                         >
-                          Home
+                          Каталог
                         </Link>
 
                         <Link
                           to={'/cate'}
                           className='text-black p-2 px-4 rounded-lg hover:bg-slate-400 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white'
                         >
-                          Categories
+                          Категории
                         </Link>
                         <Link
                           to={'/brand'}
                           className='text-black p-2 px-4 rounded-lg hover:bg-slate-400 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white'
                         >
-                          Brands
+                          Бренды
                         </Link>
                       </>
 
@@ -107,7 +109,7 @@ const Header = () => {
                             to={'/login'}
                             className='bg-slate-400 p-2 px-4 rounded-lg text-black dark:bg-gray-900 dark:text-white' 
                           >
-                            Log in
+                            Войти
                           </Link>
 
                           {/* <Link
@@ -124,7 +126,7 @@ const Header = () => {
                         to={'/reactadmin'}
                         className='text-black p-2 px-4 rounded-lg hover:bg-slate-400 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white'
                       >
-                        Admin Panel
+                        Админ панель
                       </Link>
                     )}
 
@@ -164,21 +166,22 @@ const Header = () => {
 
                 </button>
 
-                <Link to={'/cart'} className="text-slate-900 hover:text-black dark:text-slate-200 dark:hover:text-white">
+                {/* <Link to={'/cart'} className="text-slate-900 hover:text-black dark:text-slate-200 dark:hover:text-white">
                   <HiOutlineShoppingBag size={23}/>
                 </Link>
-                <span className="text-slate-900 dark:text-slate-200">{cart.length}</span>
+                <span className="text-slate-900 dark:text-slate-200">{cart.length}</span> */}
 
                 {isAuth && (
                   <Menu as="div" className="relative ml-2">
                     <div>
                       <Menu.Button className="flex rounded-full ml-8 text-sm focus:outline-none ">
                         <span className="sr-only">Open user menu</span>
-                        <img
+                        <UserIcon className="h-8 w-8 rounded-full"/>
+                        {/* <img
                           className="h-8 w-8 rounded-full"
                             src={`${import.meta.env.VITE_BACKEND_URL}${avatar}`}
                           alt=""
-                        />
+                        /> */}
                       </Menu.Button>
                     </div>
                     <Transition
@@ -191,7 +194,7 @@ const Header = () => {
                       leaveTo="transform opacity-0 scale-95"
                     >
                       <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right bg-white dark:bg-slate-950 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                        <Menu.Item>
+                        {/* <Menu.Item>
                           {({ active }) => (
                             <Link
                               to="/profile"
@@ -200,14 +203,14 @@ const Header = () => {
                               Your Profile
                             </Link>
                           )}
-                        </Menu.Item>
+                        </Menu.Item> */}
                         <Menu.Item>
                           {({ active }) => (
                             <span
                               onClick={logOutFun}
                               className={classNames(active ? 'bg-gray-100 dark:bg-slate-700' : '', 'block px-4 py-2 text-sm text-gray-700 cursor-pointer dark:text-slate-200')}
                             >
-                              Sign out
+                              Выйти
                             </span>
                           )}
                         </Menu.Item>
@@ -243,14 +246,14 @@ const Header = () => {
                     to={'/'}
                     className='bg-slate-400 p-2 px-4 rounded-lg text-black dark:bg-gray-900 dark:text-white' 
                   >
-                    Home
+                    Каталог
                   </Link>
 
                   <Link
                     to={'/cate'}
                     className='text-black p-2 px-4 rounded-lg hover:bg-slate-400 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white'
                   >
-                    Categories
+                    Категории
                   </Link>
                 </div>
 
@@ -260,15 +263,15 @@ const Header = () => {
                       to={'/login'}
                       className='bg-slate-400 p-2 px-4 rounded-lg text-black dark:bg-gray-900 dark:text-white' 
                     >
-                      Log in
+                      Войти
                     </Link>
 
-                    <Link
+                    {/* <Link
                       to={'/register'}
                       className='text-black p-2 px-4 rounded-lg hover:bg-slate-400 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white'
                     >
 Sign up
-                    </Link>
+                    </Link> */}
 </div>
                 )}
 
@@ -278,7 +281,7 @@ Sign up
                     to={'/'}
                     className='text-black p-2 px-4 rounded-lg hover:bg-slate-400 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white'
                   >
-                    Admin Panel
+                    Админ панель
                   </Link>
                 </div>
               )}
