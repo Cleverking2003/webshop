@@ -52,7 +52,7 @@ function App() {
 
             </Route>
 
-            <Route path="reactadmin/" element={<AdminPrivateRoute />} >
+            <Route path="reactadmin/*" element={<AdminPrivateRoute />} >
                 <Route path="*" element={<ReactAdminPage/>} />
             </Route>
         </Routes>
