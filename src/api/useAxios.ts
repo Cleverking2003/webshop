@@ -21,12 +21,7 @@ export const authAxios = axios.create({
 
 authAxios.interceptors.request.use(async (config) => {
     const token: string = useAuthStore.getState().access;
-    // config.headers = {
-    //     Authorization: `Bearer ${token}`,
-    // } as AxiosRequestHeaders;
-    config.headers.concat({
-        Authorization: `Bearer ${token}`,
-    } as AxiosRequestHeaders);
+    config.headers.Authorization = `Bearer ${token}`;
 
     const tokenDecoded: Token = jwt_decode(token)
 

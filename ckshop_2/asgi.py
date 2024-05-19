@@ -7,10 +7,16 @@ For more information on this file, see
 https://docs.djangoproject.com/en/4.2/howto/deployment/asgi/
 """
 
-import os
-
-from django.core.asgi import get_asgi_application
-
+import os, django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ckshop_2.settings')
+django.setup()
 
-application = get_asgi_application()
+from channels.routing import ProtocolTypeRouter, URLRouter
+from django.core.asgi import get_asgi_application
+from shop.urls import ws_urlpatterns
+
+
+application = ProtocolTypeRouter({
+    'http': get_asgi_application(),
+    'websocket': URLRouter(ws_urlpatterns)
+})

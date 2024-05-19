@@ -4,8 +4,10 @@ import { buyProduct, get_solo } from "../api/products";
 import { useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import Reviews from "../components/Reviews";
-import { Image } from "../Interfaces";
+import { Image, Token } from "../Interfaces";
 import ImageGallery from "react-image-gallery";
+import { useAuthStore } from "../store/auth";
+import jwt_decode from "jwt-decode"
 
 const SoloProduct = () => {
 
@@ -16,7 +18,12 @@ const SoloProduct = () => {
         queryKey: ['items', id],
         queryFn: () => get_solo(id || ''),
     })
+    
+    const token: string = useAuthStore.getState().access;
+    const tokenDecoded: Token = jwt_decode(token);
+    const user_id = tokenDecoded.user_id;
 
+    const ws = new WebSocket("ws://localhost:8000/ws/");
 
     if (isError) return toast.error("Error!")
     if (isLoading) return <Loader />
@@ -34,7 +41,15 @@ const SoloProduct = () => {
                     </h2>
 
                     <button
-                        onClick={() => buyProduct(data)}
+                        onClick={() => {
+                            buyProduct(data)
+                            ws.send(JSON.stringify(
+                                {
+                                    item: data.id,
+                                    user: user_id
+                                }
+                            ));
+                        }}
                         className="mb-2 inline-flex items-center mx-3 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     >
                         Купить

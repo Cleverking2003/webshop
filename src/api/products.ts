@@ -1,7 +1,6 @@
 import { Product } from "../Interfaces";
 import { authAxios, axi } from "./useAxios";
 
-
 export const create_review = async (description: string, rating: number, productId: number) => {
    await authAxios.post(`/products/review/${productId}/`, {description, rating})
 };
@@ -73,6 +72,6 @@ export const get_brands = async ({ pageParam = 1 }) => {
 };
 
 export const buyProduct = async (data: Product) => {
-    const response = await authAxios.post(`/make_purchase/${data.id}/`);
+    const response = await authAxios.post(`/make_purchase/${data.id}/`)
     return response.data;
 };

@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from .models import *
 from .serializers import *
+from .consumer import ShopConsumer
 from rest_framework import permissions, viewsets, pagination, status
 from rest_framework.decorators import action, api_view, permission_classes
 from rest_framework.response import Response
