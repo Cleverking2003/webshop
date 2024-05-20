@@ -27,7 +27,7 @@ const HomePage = () => {
         isFetchingNextPage,
         fetchNextPage,
         hasNextPage,
-    } = useInfiniteQuery(["products"], get_products, {
+    } = useInfiniteQuery(["items"], get_products, {
         getNextPageParam: (page: any) => page.next,
     });
 
