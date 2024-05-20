@@ -12,6 +12,8 @@ import { Token } from "../Interfaces";
 import { useSearchStore } from "../store/search";
 import { FaUser } from "react-icons/fa";
 import { UserIcon } from "@heroicons/react/20/solid";
+import { useQuery } from "@tanstack/react-query";
+import { get_solo_user } from "../api/users";
 
 const Header = () => {
 
@@ -23,6 +25,7 @@ const Header = () => {
     let is_admin: boolean;
     let user_id: number;
     let avatar: string;
+    let username: string;
 
   if(isAuth) {
     const tokenDecoded: Token = jwt_decode(token)
@@ -30,6 +33,12 @@ const Header = () => {
     is_admin = tokenDecoded.is_staff;
     user_id = tokenDecoded.user_id;
     avatar = String(tokenDecoded.avatar)
+    const { data: user } = useQuery({
+        queryKey: ['users', user_id],
+        queryFn: () => get_solo_user(user_id)
+    }) 
+    if (user)
+      username = user.username
   } 
 
   const setSearchTerm = useSearchStore((state) => state.setSearchTerm);
@@ -144,7 +153,7 @@ const Header = () => {
                 <input 
                 type="text" 
                 onChange={handleInputChange}
-                className="block w-full md:w-[200px] lg:w-[400px] xl:w-[600px] p-2
+                className="block w-full md:w-[100px] lg:w-[200px] xl:w-[300px] p-2
                   pl-10 text-sm text-gray-900 border border-gray-300 rounded-full 
                   bg-gray-50 dark:bg-gray-700 outline-none
                   dark:border-gray-600 dark:placeholder-gray-400 dark:text-white 
@@ -174,14 +183,16 @@ const Header = () => {
                 {isAuth && (
                   <Menu as="div" className="relative ml-2">
                     <div>
-                      <Menu.Button className="flex rounded-full ml-8 text-sm focus:outline-none ">
+                      <Menu.Button className="flex rounded-full ml-8 text-sm focus:outline-none hover:bg-slate-400 dark:hover:bg-gray-700 dark:hover:text-white">
                         <span className="sr-only">Open user menu</span>
-                        <UserIcon className="h-8 w-8 rounded-full bg-white"/>
+                        <UserIcon className="h-8 w-8 rounded-full text-black bg-white"/>
                         {/* <img
                           className="h-8 w-8 rounded-full"
                             src={`${import.meta.env.VITE_BACKEND_URL}${avatar}`}
                           alt=""
                         /> */}
+                        <p className='text-black p-2 px-4 rounded-lg dark:text-gray-300'>{username}</p>
+                        
                       </Menu.Button>
                     </div>
                     <Transition
