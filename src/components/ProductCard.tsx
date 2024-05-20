@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { Product } from "../Interfaces";
-import { useCartStore } from "../store/cart";
 
 interface Props {
     product: Product
@@ -8,8 +7,6 @@ interface Props {
 
 const ProductCard = ({ product }: Props) => {
     console.log(product);
-
-    const addToCart = useCartStore(state => state.addToCart)
 
     return (
         <div>

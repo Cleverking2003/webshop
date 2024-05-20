@@ -5,14 +5,11 @@ import { brand_api, cate_api } from "../api/products";
 import Loader from "../components/Loader";
 import { toast } from "react-hot-toast";
 import { Product } from "../Interfaces";
-import Rating from "../components/Rating";
-import { useCartStore } from "../store/cart";
 import ProductCard from "../components/ProductCard";
 
 const SearchByBrand = () => {
 
     const { brand } = useParams()
-    const addToCart = useCartStore(state => state.addToCart)
 
     const { data, isError, isLoading } = useQuery({
         queryKey: ['items', brand],

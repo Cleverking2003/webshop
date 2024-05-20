@@ -3,7 +3,6 @@ import Loader from "../components/Loader";
 import { buyProduct, get_solo } from "../api/products";
 import { useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
-import Reviews from "../components/Reviews";
 import { Image, Token } from "../Interfaces";
 import ImageGallery from "react-image-gallery";
 import { useAuthStore } from "../store/auth";

@@ -7,7 +7,6 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../store/auth";
 import jwt_decode from "jwt-decode"
-import { useCartStore } from "../store/cart"
 import { Token } from "../Interfaces";
 import { useSearchStore } from "../store/search";
 import { FaUser } from "react-icons/fa";
@@ -20,7 +19,6 @@ const Header = () => {
   const { toggleDarkMode, darkMode } = useDarkMode();
   const token: string = useAuthStore.getState().access;
   const { isAuth } = useAuthStore()
-    const cart = useCartStore(state => state.cart);
 
     let is_admin: boolean;
     let user_id: number;
@@ -120,13 +118,6 @@ const Header = () => {
                           >
                             Войти
                           </Link>
-
-                          {/* <Link
-                            to={'/register'}
-                            className='text-black p-2 px-4 rounded-lg hover:bg-slate-400 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white'
-                          >
-                            Sign up
-                          </Link> */}
                         </>
                       )}
 
@@ -175,22 +166,12 @@ const Header = () => {
 
                 </button>
 
-                {/* <Link to={'/cart'} className="text-slate-900 hover:text-black dark:text-slate-200 dark:hover:text-white">
-                  <HiOutlineShoppingBag size={23}/>
-                </Link>
-                <span className="text-slate-900 dark:text-slate-200">{cart.length}</span> */}
-
                 {isAuth && (
                   <Menu as="div" className="relative ml-2">
                     <div>
                       <Menu.Button className="flex rounded-full ml-8 text-sm focus:outline-none hover:bg-slate-400 dark:hover:bg-gray-700 dark:hover:text-white">
                         <span className="sr-only">Open user menu</span>
                         <UserIcon className="h-8 w-8 rounded-full text-black bg-white"/>
-                        {/* <img
-                          className="h-8 w-8 rounded-full"
-                            src={`${import.meta.env.VITE_BACKEND_URL}${avatar}`}
-                          alt=""
-                        /> */}
                         <p className='text-black p-2 px-4 rounded-lg dark:text-gray-300'>{username}</p>
                         
                       </Menu.Button>
@@ -205,16 +186,6 @@ const Header = () => {
                       leaveTo="transform opacity-0 scale-95"
                     >
                       <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right bg-white dark:bg-slate-950 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                        {/* <Menu.Item>
-                          {({ active }) => (
-                            <Link
-                              to="/profile"
-                              className={classNames(active ? 'bg-gray-100 dark:bg-slate-700' : '', 'block px-4 py-2 text-sm text-gray-700 dark:text-slate-200')}
-                            >
-                              Your Profile
-                            </Link>
-                          )}
-                        </Menu.Item> */}
                         <Menu.Item>
                           {({ active }) => (
                             <span
@@ -276,14 +247,7 @@ const Header = () => {
                     >
                       Войти
                     </Link>
-
-                    {/* <Link
-                      to={'/register'}
-                      className='text-black p-2 px-4 rounded-lg hover:bg-slate-400 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white'
-                    >
-Sign up
-                    </Link> */}
-</div>
+                  </div>
                 )}
 
               {is_admin  && (
