@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
-import "react-image-gallery/styles/css/image-gallery.css"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider } from "./ThemeProvider.tsx";
 import toast from "react-hot-toast"

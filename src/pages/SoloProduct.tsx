@@ -25,7 +25,7 @@ const SoloProduct = () => {
 
     const ws = new WebSocket("ws://localhost:8000/ws/");
 
-    if (isError) return toast.error("Error!")
+    if (isError) return toast.error("Ошибка!")
     if (isLoading) return <Loader />
 
 
@@ -36,19 +36,28 @@ const SoloProduct = () => {
                     <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
                         {data.name} 
                         <span className="text-green-300 ml-4">
-                        ${data.price}
+                        {data.price} ₽
                         </span>
                     </h2>
 
                     <button
                         onClick={() => {
-                            buyProduct(data)
-                            ws.send(JSON.stringify(
-                                {
-                                    item: data.id,
-                                    user: user_id
+                            buyProduct(data).then(
+                                (response) => {
+                                    toast.success(`Вы купили ${response.name}!`)
+
+                                    ws.send(JSON.stringify(
+                                        {
+                                            item: data.id,
+                                            user: user_id
+                                        }
+                                    ));
                                 }
-                            ));
+                            ).catch(
+                                (error) => { 
+                                    toast.error(`${error}`)
+                                }
+                            )
                         }}
                         className="mb-2 inline-flex items-center mx-3 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     >
@@ -70,21 +79,22 @@ const SoloProduct = () => {
 
                 </div>
                 <div className="col-span-2">
-                <ImageGallery items={data.images.map((i: Image) => (
-                    { orignal: i.image_file, thumbnail: i.image_file }
-                ))}/>
+                    <ImageGallery showFullscreenButton={false} showPlayButton={false} items={data.images.map((i: Image) => (
+                        { original: i.image_file, thumbnail: i.image_file }
+                    ))}/>
                 </div>
-
-                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                    Категория: {data.category_full.name}
-                </p>
-                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                    Бренд: {data.brand_full.name}
-                </p>
-                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                    Количество: {data.amount}
-                </p>
-                <p className="mb-4 font-bold text-gray-400 text-2xl col-span-2">{data.desc}</p>
+                <div className="mb-3 text-2xl font-bold text-gray-700 dark:text-gray-400">
+                    <p>
+                        Категория: {data.category_full.name}
+                    </p>
+                    <p>
+                        Бренд: {data.brand_full.name}
+                    </p>
+                    <p>
+                        Количество: {data.amount}
+                    </p>
+                </div>
+                <p className="mb-4 font-normal text-gray-400 text-2xl col-span-2">{data.desc}</p>
             </div>
         </div>
     );

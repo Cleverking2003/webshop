@@ -39,6 +39,7 @@ const CatePage = () => {
                                             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                                                 {category.name}
                                             </h5>
+                                            <p className="mb-2 font-bold tracking-tight text-gray-900 dark:text-white">{category.desc}</p>
                                         </Link>
                                     </div>
                                 </div>

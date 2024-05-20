@@ -25,13 +25,13 @@ const ProductCard = ({ product }: Props) => {
                     }
                 </Link>
                 <div className="p-5 ">
-                    <Link to={`/items/${product.name}`}>
+                    <Link to={`/items/${product.id}`}>
                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                             {product.name}
                         </h5>
                         <div className="flex justify-between">
                             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-slate-200">
-                                $ {product.price}
+                                {product.price} ₽
                             </h5>
                         </div>
                     </Link>

@@ -41,8 +41,8 @@ def make_purchase(request, pk=None):
     
     item.amount -= 1
     item.save()
-    item_serializer = ItemSerializer(item, context={'request':request})
-    return HttpResponse(item_serializer.data, status=status.HTTP_200_OK)
+    item_serializer = ItemSerializer(item)
+    return Response(item_serializer.data, status=status.HTTP_200_OK)
 
 
 class BrandViewSet(viewsets.ModelViewSet):

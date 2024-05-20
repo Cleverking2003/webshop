@@ -72,6 +72,14 @@ export const get_brands = async ({ pageParam = 1 }) => {
 };
 
 export const buyProduct = async (data: Product) => {
-    const response = await authAxios.post(`/make_purchase/${data.id}/`)
-    return response.data;
+    // const response = await authAxios.post(`/make_purchase/${data.id}/`)
+    return await authAxios.post(`/make_purchase/${data.id}/`).then(
+        (response) => {
+            console.log(response)
+            return response.data
+        }
+    ).catch(
+        (error) => Promise.reject(error.response.data.errors)
+    )
+    // return response.data;
 };

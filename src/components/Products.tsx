@@ -106,7 +106,7 @@ const Products = ({ results }: Props) => {
                                         </td>
 
                                         <td className="px-4 py-3">
-                                            $ {product.price}
+                                            {product.price} ₽
                                         </td>
 
                                         <td className="px-4 py-3">
@@ -161,7 +161,7 @@ const Products = ({ results }: Props) => {
                                             </td>
 
                                             <td className="px-4 py-3">
-                                                $ {product.price}
+                                                {product.price} ₽
                                             </td>
 
                                             <td className="px-4 py-3">

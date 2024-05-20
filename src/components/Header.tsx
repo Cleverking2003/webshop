@@ -84,7 +84,7 @@ const Header = () => {
                       <>
                         <Link
                           to={'/'}
-                          className='bg-slate-400 p-2 px-4 rounded-lg text-black dark:bg-gray-900 dark:text-white' 
+                          className='text-black p-2 px-4 rounded-lg hover:bg-slate-400 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white'
                         >
                           Каталог
                         </Link>
@@ -176,7 +176,7 @@ const Header = () => {
                     <div>
                       <Menu.Button className="flex rounded-full ml-8 text-sm focus:outline-none ">
                         <span className="sr-only">Open user menu</span>
-                        <UserIcon className="h-8 w-8 rounded-full"/>
+                        <UserIcon className="h-8 w-8 rounded-full bg-white"/>
                         {/* <img
                           className="h-8 w-8 rounded-full"
                             src={`${import.meta.env.VITE_BACKEND_URL}${avatar}`}
