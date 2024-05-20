@@ -3,13 +3,11 @@ import { useDarkMode } from "../store/theme";
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { HiOutlineShoppingBag } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../store/auth";
 import jwt_decode from "jwt-decode"
 import { Token } from "../Interfaces";
 import { useSearchStore } from "../store/search";
-import { FaUser } from "react-icons/fa";
 import { UserIcon } from "@heroicons/react/20/solid";
 import { useQuery } from "@tanstack/react-query";
 import { get_solo_user } from "../api/users";
@@ -22,7 +20,6 @@ const Header = () => {
 
     let is_admin: boolean;
     let user_id: number;
-    let avatar: string;
     let username: string;
 
   if(isAuth) {
@@ -30,7 +27,6 @@ const Header = () => {
     console.log(tokenDecoded)
     is_admin = tokenDecoded.is_staff;
     user_id = tokenDecoded.user_id;
-    avatar = String(tokenDecoded.avatar)
     const { data: user } = useQuery({
         queryKey: ['users', user_id],
         queryFn: () => get_solo_user(user_id)

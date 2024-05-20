@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { cate_api } from "../api/products";
 import Loader from "../components/Loader";

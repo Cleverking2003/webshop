@@ -1,4 +1,4 @@
-import { ArrayInput, Create, ImageInput, NumberInput, ReferenceInput, SimpleForm, SimpleFormIterator, TextInput } from 'react-admin';
+import { Create, ImageInput, NumberInput, ReferenceInput, SimpleForm, TextInput } from 'react-admin';
 
 export const BrandCreate = () => (
     <Create>
@@ -25,8 +25,6 @@ export const ItemCreate = () => (
             <TextInput source="desc" />
             <TextInput source="price" />
             <NumberInput source="amount" />
-            {/* <ArrayInput source="images"><SimpleFormIterator>
-<ImageInput source="file" /></SimpleFormIterator></ArrayInput> */}
             <ReferenceInput source="brand" reference='brands'/>
             <ReferenceInput source='category' reference='categories'/>
         </SimpleForm>

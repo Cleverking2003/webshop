@@ -1,4 +1,4 @@
-import { ArrayInput, Edit, ImageInput, NumberInput, ReferenceInput, SimpleForm, SimpleFormIterator, TextInput } from 'react-admin';
+import { Edit, ImageInput, NumberInput, ReferenceInput, SimpleForm, TextInput } from 'react-admin';
 
 export const BrandEdit = () => (
     <Edit>

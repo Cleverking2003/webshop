@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { brand_api, cate_api } from "../api/products";
+import { brand_api } from "../api/products";
 import Loader from "../components/Loader";
 import { toast } from "react-hot-toast";
 import { Product } from "../Interfaces";

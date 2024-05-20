@@ -1,4 +1,4 @@
-import axios, { AxiosRequestHeaders } from "axios";
+import axios from "axios";
 import { useAuthStore } from "../store/auth";
 import jwt_decode from "jwt-decode";
 import { Token } from "../Interfaces";

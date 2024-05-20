@@ -8,11 +8,7 @@ const CatePage = () => {
 
     const {
         data,
-        isLoading,
         error,
-        isFetchingNextPage,
-        fetchNextPage,
-        hasNextPage,
     } = useInfiniteQuery(["products"], get_categories, {
         getNextPageParam: (page: any) => page.next,
     });

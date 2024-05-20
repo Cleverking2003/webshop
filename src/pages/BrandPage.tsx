@@ -1,18 +1,14 @@
 import { Link } from "react-router-dom";
-import { get_brands, get_categories } from "../api/products";
+import { get_brands } from "../api/products";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { Brand, Category } from "../Interfaces";
+import { Brand } from "../Interfaces";
 
 const BrandPage = () => {
 
     const {
         data,
-        isLoading,
         error,
-        isFetchingNextPage,
-        fetchNextPage,
-        hasNextPage,
     } = useInfiniteQuery(["items"], get_brands, {
         getNextPageParam: (page: any) => page.next,
     });
